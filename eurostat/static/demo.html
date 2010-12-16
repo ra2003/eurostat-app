@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Principal European Economic Indicators - Eurostat Interactive Chart Demo</title>
+    <link rel="stylesheet" href="style.css" media="screen, print" title="Master stylesheet" charset="utf-8" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <!--[if IE]><script language="javascript" type="text/javascript" src="http://assets.okfn.org/ext/flot/0.6/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="http://assets.okfn.org/ext/flot/0.6/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript">
+    var datasetId = 'teina011';
+    var cachedir = 'cache';
+jQuery(document).ready(function($) {
+    listOfDatasets = {
+      'teina011': 'GDP in volume (%)',
+      'teina021': 'Private final consumption in volume',
+      'teina041': 'Investments in volume'
+    }
+    plotDataset('teina011');
+    });
+    </script>
+  </head>
+  <body>
+    <div id="flot-chart" class="flot">
+      <h2 id="chart-heading"></h2>
+      <div class="flot-chart"></div>
+      <div class="flot-chart-controls">
+        <div class="flot-chart-type">
+          Chart type:
+          <input type="checkbox" value="lines" name="lines" /> Lines
+          <input type="checkbox" value="points" name="points" /> Points
+        </div>
+        <div class="flot-select-series">
+            Series:
+        </div>
+      </div>
+   </div>
+  </body>
+</html>

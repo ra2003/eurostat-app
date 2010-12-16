@@ -1,0 +1,10 @@
+syntax: glob
+## generic
+*.pyc
+*.swp
+*.egg-info/*
+sandbox/*
+## specific
+*.tsv
+*.gz
+
