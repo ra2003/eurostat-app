@@ -5,11 +5,13 @@ genshi = Genshi(app)
 
 @app.route('/')
 def home():
-    return render_response('index.html', dict())
+    dataset_id = 'teina011'
+    return render_response('index.html', dict(dataset_id=dataset_id))
 
 @app.route('/embed')
 def embed():
-    return render_response('embed.html', dict())
+    dataset_id = 'teina011'
+    return render_response('embed.html', dict(dataset_id=dataset_id))
 
 
 

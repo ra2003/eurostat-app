@@ -3,6 +3,13 @@
 
   <py:def function="page_title">Home</py:def>
 
+  <py:def function="optional_head">
+    <script type="text/javascript">
+    var datasetId = '${dataset_id}';
+    var cachedir = '${url_for('static', filename='cache')}';
+    </script>
+  </py:def>
+
   <div py:def="content">
     <div id="flot-chart" class="flot">
       <h2 id="chart-heading"></h2>
@@ -21,7 +28,7 @@
 
     <textarea class="embed">
 <!-- OKF Eurostat PEEE -->
-<iframe style="padding:0;margin:0;" height="100px" frameborder="0" width="100%" scrolling="no" src="http://eurostat.dev.okfn.org/embed?id=...."></iframe>
+<iframe style="padding:0;margin:0;" height="100px" frameborder="0" width="100%" scrolling="no" src="http://eurostat.dev.okfn.org/embed?id=${dataset_id}"></iframe>
 <!-- /OKF Eurostat PEEE -->
     </textarea>
   </div>

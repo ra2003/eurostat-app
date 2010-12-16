@@ -15,10 +15,9 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
   <script type="text/javascript" src="http://assets.okfn.org/ext/flot/0.6/jquery.flot.min.js"></script>
   <script type="text/javascript" src="${url_for('static', filename='app.js')}"></script>
-  <script type="text/javascript">
-	var datasetId = 'teina011';
-	var cachedir = '${url_for('static', filename='cache')}';
-  </script>
+  <py:if test="defined('optional_head')">
+    ${optional_head()}
+  </py:if>
 </head>
 
 <body>
