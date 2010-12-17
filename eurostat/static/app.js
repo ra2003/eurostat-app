@@ -1,14 +1,5 @@
-jQuery(document).ready(function($) {
-	listOfDatasets = {
-		'teina011': 'GDP in volume (%)',
-		'teina021': 'Private final consumption in volume',
-		'teina041': 'Investments in volume'
-	}
-	plotDataset(datasetId, cachedir);
-});
-
-function plotDataset(datasetId, cachedir) {
-	$('#chart-heading').text(listOfDatasets[datasetId]);
+function plotDataset(datasetId, datasetTitle, cachedir) {
+	$('#chart-heading').text(datasetTitle);
 	$.getJSON(cachedir + '/' + datasetId + '.json', null, plotItAll);
 }
 

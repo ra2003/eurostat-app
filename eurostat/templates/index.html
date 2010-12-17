@@ -5,14 +5,42 @@
 
   <py:def function="optional_head">
     <script type="text/javascript">
-    var datasetId = '${dataset_id}';
-    var cachedir = '${url_for('static', filename='cache')}';
+var datasetId = '${dataset_id}';
+var cachedir = '${url_for('static', filename='cache')}';
+var indexJson = '${url_for('static', filename='cache/index.json')}';
+jQuery(document).ready(function($) {
+  $.getJSON(indexJson, null, function(data) {
+    var listingElement = $('#dataset-listing');
+    for(thisId in data) {
+      var tdataset = data[thisId];
+      var link = $('<a></a>');
+      link.text(tdataset.title);
+      link.attr('href', '#');
+      link.attr('id', 'dataset-' + thisId);
+      listingElement.append($('<li></li>').append(link));
+    }
+    listingElement.live
+    listingElement.find('a').live('click', function(e) {
+      e.preventDefault();
+      // strip off 'dataset-'
+      var thisId = e.target.id.slice(8);
+      plotDataset(thisId, data[thisId], cachedir);
+    });
+    plotDataset(datasetId, data[datasetId].title, cachedir);
+  });
+});
     </script>
   </py:def>
 
   <div py:def="content">
+    <h2 id="chart-heading"></h2>
+
+    <ul id="dataset-listing">
+    </ul>
+
+    <xi:include href="flot.html" />
+
     <div id="flot-chart" class="flot">
-      <h2 id="chart-heading"></h2>
       <div class="flot-chart"></div>
       <div class="flot-chart-controls">
         <div class="flot-chart-type">
@@ -26,10 +54,10 @@
       </div>
     </div>
 
-    <textarea class="embed">
-<!-- OKF Eurostat PEEE -->
+    <textarea id="embed-code">
+<!-- Eurostat PEEE -->
 <iframe style="padding:0;margin:0;" height="100px" frameborder="0" width="100%" scrolling="no" src="http://eurostat.dev.okfn.org/embed?id=${dataset_id}"></iframe>
-<!-- /OKF Eurostat PEEE -->
+<!-- /Eurostat PEEE -->
     </textarea>
   </div>
 

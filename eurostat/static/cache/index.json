@@ -1,0 +1,11 @@
+{ 
+  "teina011": {
+    "title": "GDP in volume (%)"
+  },
+  "teina021": {
+    "title": "Private final consumption in volume"
+  },
+  "teicp000": { 
+    "title": "Investments in volume"
+  }
+}

@@ -4,8 +4,6 @@
   xmlns:py="http://genshi.edgewall.org/" 
   xmlns:xi="http://www.w3.org/2001/XInclude"
   >
-
-
 <head>
   <title>Principal European Economic Indicators - Eurostat</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,7 +15,10 @@
 
   <script type="text/javascript">
   var datasetId = '${dataset_id}';
-	var cachedir = '${url_for('static', filename='cache')}';
+  var cachedir = '${url_for('static', filename='cache')}';
+  jQuery(document).ready(function () {
+    plotDataset(datasetId, null, cachedir);
+  });
   </script>
 </head>
 

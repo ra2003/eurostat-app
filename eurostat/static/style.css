@@ -1,3 +1,7 @@
+/*****************************
+  * Fixes to underlying theme
+  ****************************/
+
 #primary {
   display: none;
 }
@@ -6,13 +10,22 @@
   margin-right: 0;
 }
 
+/***************************************
+  * the chart and dataset stuff
+  **************************************/
+
+#dataset-listing {
+  float: right;
+  width: 25%;
+  font-size: 80%;
+}
+
 div.flot {
 }
 
 .flot-chart {
   height: 250px;
-  width: 95%;
-  margin: auto;
+  width: 70%;
 }
 
 .flot-chart-controls {
@@ -25,15 +38,35 @@ div.flot {
 .flot-select-series {
 }
 
-.embed .flot-select-series {
-  display: none;
-}
-
 #content .legend table, .legend table {
   width: auto;
 }
 
-textarea.embed {
-	width: 100%;
-	height: 100px;
+#content .legend tr td {
+  padding: 1px 4px;
+  margin: 0;
 }
+
+#content tr td.legendColorBox > div {
+  margin-bottom: -2px;
+}
+
+.embed .flot-select-series {
+  display: none;
+}
+
+.embed .legend {
+  display: none;
+}
+
+/*************************
+  * Index page
+  */
+
+textarea#embed-code {
+  margin-top: 20px;
+	width: 80%;
+	height: 120px;
+  font-size: 80%;
+}
+
