@@ -64,17 +64,23 @@ function setupFlot(all_datasets, flotChart, options) {
 	// setup checkboxes 
 	var seriesList = flotChart.find(".flot-select-series");
 	count = 0;
+	var _inputList = $('<ul></ul>');
+	var _tmpl = '<li><input type="checkbox" name="${key}" value="${key}" ${checked} ></input> ${label}</li>';
 	for (var datasetKey in all_datasets) {
-		var input = $('<input type="checkbox"></input>');
-		input.attr('name', datasetKey);
-		input.attr('value', datasetKey);
-		if(count == 0) {
-			input.attr('checked', 'checked');
+		if(count==0) {
+			var _checked = 'checked=""';
+		} else {
+			var _checked = '';
 		}
-		seriesList.append(input);
-		seriesList.append(all_datasets[datasetKey].label);
+		var _templated = $.tmpl(_tmpl, {
+			key: datasetKey,
+			checked: _checked,
+			label: all_datasets[datasetKey].label
+			});
+		_inputList.append(_templated)
 		count = count + 1;
 	}
+	seriesList.html(_inputList);
 
 	flotChart.find('.flot-chart-controls').find('input').live('click', function() {
 		doFlotPlot(all_datasets, flotChart, options);

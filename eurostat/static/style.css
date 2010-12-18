@@ -35,7 +35,12 @@ div.flot {
 .flot-chart-type {
 }
 
-.flot-select-series {
+.flot-select-series ul {
+  list-style-type: none;
+}
+
+.flot-select-series li {
+  display: inline;
 }
 
 #content .legend table, .legend table {
@@ -65,8 +70,8 @@ div.flot {
 
 textarea#embed-code {
   margin-top: 20px;
-	width: 80%;
-	height: 120px;
+  width: 80%;
+  height: 120px;
   font-size: 80%;
 }
 
