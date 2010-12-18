@@ -20,12 +20,11 @@ jQuery(document).ready(function($) {
       link.attr('id', 'dataset-' + thisId);
       listingElement.append($('<li></li>').append(link));
     }
-    listingElement.live
     listingElement.find('a').live('click', function(e) {
       e.preventDefault();
       // strip off 'dataset-'
       var thisId = e.target.id.slice(8);
-      plotDataset(thisId, data[thisId], cachedir);
+      plotDataset(thisId, data[thisId].title, cachedir);
     });
     plotDataset(datasetId, data[datasetId].title, cachedir);
   });
