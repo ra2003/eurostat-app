@@ -7,11 +7,8 @@
 <head>
   <title>Principal European Economic Indicators - Eurostat</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="stylesheet" href="${url_for('static', filename='style.css')}" media="screen, print" title="Master stylesheet" charset="utf-8" />
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-  <script type="text/javascript" src="http://assets.okfn.org/ext/flot/0.6/jquery.flot.min.js"></script>
-  <script type="text/javascript" src="${url_for('static', filename='app.js')}"></script>
+  <xi:include href="_media.html" />
 
   <script type="text/javascript">
   var datasetId = '${dataset_id}';
