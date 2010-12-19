@@ -60,27 +60,39 @@ def peeis():
     url = 'http://epp.eurostat.ec.europa.eu/cache/PEEIs/PEEIs_EN.html'
     fp = ourcache.retrieve(url)
     html = open(fp).read()
-    dataset_ids = re.findall(r'pcode=([^&]+)&', html)
+    tdataset_ids = re.findall(r'goToTGM.*pcode=([^&]+)&', html)
+    # de-dup
+    dataset_ids = []
+    for _id in tdataset_ids:
+        if _id not in dataset_ids:
+            dataset_ids.append(_id)
     reader = tabular.HtmlReader()
     tab = reader.read(fp, 1)
     peeis = []
     for row in tab.data[3:]:
         series_name = row[1].strip()
-        if series_name[0] not in '%0123456789':
+        if series_name.startswith('3 month') or series_name[0] not in '%0123456789':
             peeis.append(series_name)
         if series_name == 'Euro-dollar exchange rate':
             break
-    peeis = zip(dataset_ids, peeis)
+    peeis_index = {}
+    for count, (_id, title) in enumerate(zip(dataset_ids, peeis)):
+        peeis_index[_id] = {
+            'title': title,
+            'order': count
+            }
+    print len(dataset_ids), dataset_ids
+    print len(peeis_index)
     dumppath = ourcache.cache_path(PEEI_LIST)
-    json.dump(peeis, open(dumppath, 'w'), indent=2)
+    json.dump(peeis_index, open(dumppath, 'w'), indent=2)
     print 'PEEIs extracted to %s' % dumppath
 
 def peeis_download():
     '''Download (and extract to json) all PEEI datasets.'''
     peei_list_fp = ourcache.cache_path(PEEI_LIST)
     peeis = json.load(open(peei_list_fp))
-    for eurostatid, title in peeis:
-        print 'Processing: %s - %s' % (eurostatid, title)
+    for eurostatid in sorted(peeis.keys()):
+        print 'Processing: %s' % eurostatid
         fp = download(eurostatid)
         extract(fp)
     

@@ -1,86 +1,90 @@
-[
-  [
-    "teina011", 
-    "GDP in volume"
-  ], 
-  [
-    "teina011", 
-    "Private final consumption in volume"
-  ], 
-  [
-    "teina021", 
-    "Investments in volume"
-  ], 
-  [
-    "teina021", 
-    "External trade balance"
-  ], 
-  [
-    "teina041", 
-    "Current account- Total"
-  ], 
-  [
-    "teina041", 
-    "Inflation (HICP all items)"
-  ], 
-  [
-    "teiet210", 
-    "Unemployment rate - Total"
-  ], 
-  [
-    "teibp050", 
-    "Unemployment rate - 15-24 years"
-  ], 
-  [
-    "teicp000", 
-    "Unemployment rate - above 24 years"
-  ], 
-  [
-    "teicp000", 
-    "Labour Cost Index"
-  ], 
-  [
-    "teilm020", 
-    "Employment"
-  ], 
-  [
-    "teilm021", 
-    "Industrial producer prices"
-  ], 
-  [
-    "teilm022", 
-    "Industrial production"
-  ], 
-  [
-    "teilm100", 
-    "Industrial new orders"
-  ], 
-  [
-    "teilm100", 
-    "Construction production"
-  ], 
-  [
-    "teina300", 
-    "Retail trade deflated turnover"
-  ], 
-  [
-    "teina300", 
-    "Government deficit/surplus"
-  ], 
-  [
-    "teiis010", 
-    "General government gross debt"
-  ], 
-  [
-    "teiis010", 
-    "Economic Sentiment indicator"
-  ], 
-  [
-    "teiis080", 
-    "Long term government bond yields"
-  ], 
-  [
-    "teiis080", 
-    "Euro-dollar exchange rate"
-  ]
-]
+{
+  "teiis080": {
+    "order": 12, 
+    "title": "Industrial production"
+  }, 
+  "teimf050": {
+    "order": 20, 
+    "title": "Long term government bond yields"
+  }, 
+  "teimf200": {
+    "order": 21, 
+    "title": "Euro-dollar exchange rate"
+  }, 
+  "teibs010": {
+    "order": 18, 
+    "title": "Economic Sentiment indicator"
+  }, 
+  "teicp000": {
+    "order": 5, 
+    "title": "Inflation (HICP all items)"
+  }, 
+  "teina200": {
+    "order": 16, 
+    "title": "Government deficit/surplus"
+  }, 
+  "teiis500": {
+    "order": 14, 
+    "title": "Construction production"
+  }, 
+  "teina300": {
+    "order": 10, 
+    "title": "Employment"
+  }, 
+  "teina220": {
+    "order": 17, 
+    "title": "General government gross debt"
+  }, 
+  "teiis010": {
+    "order": 11, 
+    "title": "Industrial producer prices"
+  }, 
+  "teina011": {
+    "order": 0, 
+    "title": "GDP in volume"
+  }, 
+  "teilm100": {
+    "order": 9, 
+    "title": "Labour Cost Index"
+  }, 
+  "teilm022": {
+    "order": 8, 
+    "title": "Unemployment rate - above 24 years"
+  }, 
+  "teilm021": {
+    "order": 7, 
+    "title": "Unemployment rate - 15-24 years"
+  }, 
+  "teilm020": {
+    "order": 6, 
+    "title": "Unemployment rate - Total"
+  }, 
+  "teiis600": {
+    "order": 13, 
+    "title": "Industrial new orders"
+  }, 
+  "teimf040": {
+    "order": 19, 
+    "title": "3 months Interest rate"
+  }, 
+  "teiet210": {
+    "order": 3, 
+    "title": "External trade balance"
+  }, 
+  "teina021": {
+    "order": 1, 
+    "title": "Private final consumption in volume"
+  }, 
+  "teibp050": {
+    "order": 4, 
+    "title": "Current account- Total"
+  }, 
+  "teina041": {
+    "order": 2, 
+    "title": "Investments in volume"
+  }, 
+  "teiis240": {
+    "order": 15, 
+    "title": "Retail trade deflated turnover"
+  }
+}
