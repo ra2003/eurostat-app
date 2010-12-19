@@ -8,7 +8,7 @@
     <script type="text/javascript">
 var datasetId = '${dataset_id}';
 var cachedir = '${url_for('static', filename='cache')}';
-var indexJson = '${url_for('static', filename='cache/index.json')}';
+var indexJson = '${url_for('static', filename='cache/peeis.json')}';
 jQuery(document).ready(function($) {
   $.getJSON(indexJson, null, function(data) {
     var listingElement = $('#dataset-listing');
@@ -39,20 +39,6 @@ jQuery(document).ready(function($) {
     </ul>
 
     <xi:include href="flot.html" />
-
-    <div id="flot-chart" class="flot">
-      <div class="flot-chart"></div>
-      <div class="flot-chart-controls">
-        <div class="flot-chart-type">
-          Chart type:
-          <input type="checkbox" value="lines" name="lines" /> Lines
-          <input type="checkbox" value="points" name="points" /> Points
-        </div>
-        <div class="flot-select-series">
-            Series:
-        </div>
-      </div>
-    </div>
 
     <textarea id="embed-code">
 <!-- Eurostat PEEE -->
