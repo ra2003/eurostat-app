@@ -1,23 +1,38 @@
+'''Code for obtaining and cleaning data from Eurostat.
+'''
+import os
+import re
 import gzip
-from swiss import cache
+import json
+
+from swiss import cache, tabular
 from swiss.misc import floatify
-import swiss
 base = 'http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?file=data/'
-filenames = ['teina011.tsv.gz', 'teina021.tsv.gz', 'teicp000.tsv.gz']
-# teicp000.tsv.gz
 
 ourcache = cache.Cache('static/cache')
 
-for fn in filenames:
+def download(dataset_id):
+    '''Download a eurostat dataset based on its `dataset_id`
+    '''
+    fn = dataset_id + '.tsv.gz'
     url = base + fn
+    # do not use retrieve as we get random ugly name
     fp = ourcache.cache_path(fn)
     ourcache.download(url, fp)
     newfp = fp[:-3]
-    print newfp
     contents = gzip.GzipFile(fp).read()
     open(newfp, 'w').write(contents)
-    reader = swiss.tabular.CsvReader()
+    return newfp
+
+def extract(newfp):
+    '''Extract data from tsv file at `filepath`, clean it and save it as json
+    to file with same basename and extension json'''
+    reader = tabular.CsvReader()
     tab = reader.read(open(newfp), dialect='excel-tab')
+    # some data has blank top row!
+    if not tab.header:
+        tab.header = tab.data[0]
+        del tab.data[0]
     alldata = [tab.header] + tab.data
     transposed = zip(*alldata)
     tab.header = transposed[0]
@@ -33,7 +48,43 @@ for fn in filenames:
         newrow = [parsedate(newrow[0])] + [ floatify(x) for x in newrow[1:] ]
         return newrow
     tab.data = map(cleanrow, transposed[1:])
-    writer = swiss.tabular.JsonWriter()
-    jsonfp = fp.split('.')[0] + '.json'
+    writer = tabular.JsonWriter()
+    jsonfp = newfp.split('.')[0] + '.json'
     writer.write(tab, open(jsonfp, 'w'))
+
+PEEI_LIST = 'peeis.json'
+def peeis():
+    '''Scrape the Eurostat Prinicipal Economic Indicators (PEEI) list'''
+    # turns out they iframe the data!
+    # url = 'http://epp.eurostat.ec.europa.eu/portal/page/portal/euroindicators/peeis/'
+    url = 'http://epp.eurostat.ec.europa.eu/cache/PEEIs/PEEIs_EN.html'
+    fp = ourcache.retrieve(url)
+    html = open(fp).read()
+    dataset_ids = re.findall(r'pcode=([^&]+)&', html)
+    reader = tabular.HtmlReader()
+    tab = reader.read(fp, 1)
+    peeis = []
+    for row in tab.data[3:]:
+        series_name = row[1].strip()
+        if series_name[0] not in '%0123456789':
+            peeis.append(series_name)
+        if series_name == 'Euro-dollar exchange rate':
+            break
+    peeis = zip(dataset_ids, peeis)
+    dumppath = ourcache.cache_path(PEEI_LIST)
+    json.dump(peeis, open(dumppath, 'w'), indent=2)
+    print 'PEEIs extracted to %s' % dumppath
+
+def peeis_download():
+    '''Download (and extract to json) all PEEI datasets.'''
+    peei_list_fp = ourcache.cache_path(PEEI_LIST)
+    peeis = json.load(open(peei_list_fp))
+    for eurostatid, title in peeis:
+        print 'Processing: %s - %s' % (eurostatid, title)
+        fp = download(eurostatid)
+        extract(fp)
+    
+from swiss.clitools import _main
+if __name__ == '__main__':
+    _main(locals())
 

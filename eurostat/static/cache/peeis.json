@@ -1,0 +1,86 @@
+[
+  [
+    "teina011", 
+    "GDP in volume"
+  ], 
+  [
+    "teina011", 
+    "Private final consumption in volume"
+  ], 
+  [
+    "teina021", 
+    "Investments in volume"
+  ], 
+  [
+    "teina021", 
+    "External trade balance"
+  ], 
+  [
+    "teina041", 
+    "Current account- Total"
+  ], 
+  [
+    "teina041", 
+    "Inflation (HICP all items)"
+  ], 
+  [
+    "teiet210", 
+    "Unemployment rate - Total"
+  ], 
+  [
+    "teibp050", 
+    "Unemployment rate - 15-24 years"
+  ], 
+  [
+    "teicp000", 
+    "Unemployment rate - above 24 years"
+  ], 
+  [
+    "teicp000", 
+    "Labour Cost Index"
+  ], 
+  [
+    "teilm020", 
+    "Employment"
+  ], 
+  [
+    "teilm021", 
+    "Industrial producer prices"
+  ], 
+  [
+    "teilm022", 
+    "Industrial production"
+  ], 
+  [
+    "teilm100", 
+    "Industrial new orders"
+  ], 
+  [
+    "teilm100", 
+    "Construction production"
+  ], 
+  [
+    "teina300", 
+    "Retail trade deflated turnover"
+  ], 
+  [
+    "teina300", 
+    "Government deficit/surplus"
+  ], 
+  [
+    "teiis010", 
+    "General government gross debt"
+  ], 
+  [
+    "teiis010", 
+    "Economic Sentiment indicator"
+  ], 
+  [
+    "teiis080", 
+    "Long term government bond yields"
+  ], 
+  [
+    "teiis080", 
+    "Euro-dollar exchange rate"
+  ]
+]
