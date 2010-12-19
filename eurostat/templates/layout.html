@@ -23,16 +23,17 @@
     <div id="branding" role="banner">
        <h1 id="site-title">
        <a href="${url_for('home')}" title="Home">
-         Interactive Eurostat
+         Eurostat Economic Indicators
         </a>
       </h1>
-      <div id="site-description"></div>
+      <div id="site-description">Interactive, embeddable priniciapl european economic indicators</div>
     </div> <!-- /branding -->
 
   <div id="access" role="navigation">
     <div class="menu">
     <ul>
-    <li class="menu-item"><a href="http://wp.staging.wheredoesmymoneygo.org/">Home</a></li> 
+    <li class="menu-item"><a href="${url_for('home')}">Home</a></li> 
+    <li class="menu-item"><a href="http://bitbucket.org/rgrp/eurostat">Source code</a></li> 
     </ul>
     </div> <!-- .menu -->
   </div> <!-- #access -->

@@ -1,2 +1,3 @@
 flask
 flask-genshi
+-e hg+https://bitbucket.org/okfn/swiss#egg=swiss
