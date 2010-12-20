@@ -27,9 +27,19 @@ class Data(object):
         open(newfp, 'w').write(contents)
         return newfp
 
+    def _iso3166(self):
+        # ckan.net/package/iso-3166-2-digit-country-codes
+        url = 'http://api.scraperwiki.com/api/1.0/datastore/getdata?&name=iso-3166-2-letter-country-codes&limit=300'
+        fp = ourcache.retrieve(url)
+        codes = json.load(open(fp))
+        return dict([ [x['code'], x['name']] for x in codes ])
+
     def extract(self, newfp):
         '''Extract data from tsv file at `filepath`, clean it and save it as json
-        to file with same basename and extension json'''
+        to file with same basename and extension json
+
+        :return: extracted data as `Tabular`.
+        '''
         reader = tabular.CsvReader()
         tab = reader.read(open(newfp), dialect='excel-tab')
         # some data has blank top row!
@@ -39,6 +49,14 @@ class Data(object):
         alldata = [tab.header] + tab.data
         transposed = zip(*alldata)
         tab.header = transposed[0]
+        # clean header coders (mainly for countries)
+        isocodes = self._iso3166()
+        # of form PCH_Q1_SA,BE
+        def clean_code(code):
+            parts = code.split(',')
+            isocode = parts[1] if len(parts) > 1 else parts[0]
+            return isocodes.get(isocode, isocode)
+        tab.header = map(clean_code, tab.header)
         def parsedate(cell):
             if 'Q' in cell:
                 items = cell.split('Q')
@@ -54,6 +72,7 @@ class Data(object):
         writer = tabular.JsonWriter()
         jsonfp = newfp.split('.')[0] + '.json'
         writer.write(tab, open(jsonfp, 'w'))
+        return tab
 
     PEEI_LIST = 'peeis.json'
     def peeis(self):
