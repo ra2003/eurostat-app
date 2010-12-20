@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flaskext.genshi import Genshi, render_response
 app = Flask(__name__)
 genshi = Genshi(app)
@@ -10,9 +10,8 @@ def home():
 
 @app.route('/embed')
 def embed():
-    dataset_id = 'teina011'
+    dataset_id = request.args.get('datasetId', 'teina011')
     return render_response('embed.html', dict(dataset_id=dataset_id))
-
 
 
 if __name__ == '__main__':

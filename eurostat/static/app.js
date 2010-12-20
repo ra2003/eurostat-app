@@ -1,5 +1,12 @@
 function plotDataset(datasetId, datasetTitle, cachedir) {
 	$('#chart-heading').text(datasetTitle);
+    var embedCode = new Array(
+      '<!-- Eurostat PEEE -->',
+      '<iframe style="padding:0;margin:0;" height="100px" frameborder="0" width="100%" scrolling="no" src="http://eurostat.dev.okfn.org/embed?datasetId=' + datasetId + '"></iframe>',
+      '<!-- /Eurostat PEEE -->'
+	  );
+	embedCode = embedCode.join(" \n ");
+	$("#embed-code").val(embedCode);
 	$.getJSON(cachedir + '/' + datasetId + '.json', null, plotItAll);
 }
 
