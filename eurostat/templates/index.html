@@ -32,16 +32,28 @@ jQuery(document).ready(function($) {
     </script>
   </py:def>
 
+  <py:def function="primary_sidebar_extras">
+        <li class="widget-container widget_text">
+          <h3 class="widget-title">Embed this graph</h3>
+          <div class="textwidget">
+Copy and paste this code into your webe page to embed the graph shown on the left.
+    <textarea id="embed-code">
+    </textarea>
+          </div>
+        </li>
+        <li class="widget-container widget_text">
+          <h3 class="widget-title">Choose dataset to view</h3>
+          <div class="textwidget">
+    <ul id="dataset-listing">
+    </ul>
+          </div>
+        </li>
+  </py:def>
+
   <div py:def="content">
     <h2 id="chart-heading"></h2>
 
-    <ul id="dataset-listing">
-    </ul>
-
     <xi:include href="flot.html" />
-
-    <textarea id="embed-code">
-    </textarea>
   </div>
 
   <xi:include href="layout.html" />

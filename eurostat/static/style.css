@@ -2,21 +2,14 @@
   * Fixes to underlying theme
   ****************************/
 
-#primary {
-  display: none;
-}
-
-#content {
-  margin-right: 0;
-}
-
 /***************************************
   * the chart and dataset stuff
   **************************************/
 
+#chart-heading {
+}
+
 #dataset-listing {
-  float: right;
-  width: 25%;
   font-size: 80%;
 }
 
@@ -24,8 +17,8 @@ div.flot {
 }
 
 .flot-chart {
-  height: 250px;
-  width: 70%;
+  height: 350px;
+  width: 100%;
 }
 
 .flot-chart-controls {
@@ -66,8 +59,8 @@ div.flot {
 
 textarea#embed-code {
   margin-top: 20px;
-  width: 80%;
-  height: 120px;
+  width: 95%;
+  height: 150px;
   font-size: 80%;
 }
 
