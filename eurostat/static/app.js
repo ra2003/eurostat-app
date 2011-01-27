@@ -32,8 +32,8 @@ function plotItAll(jsondata) {
 
 
 function makeSeries(tabular, firstColumnName, secondColumnName) {
-	var idx1 = tabular.header.indexOf(firstColumnName);
-	var idx2 = tabular.header.indexOf(secondColumnName);
+	var idx1 = $.inArray(firstColumnName, tabular.header);
+	var idx2 = $.inArray(secondColumnName, tabular.header);
 	var series = [];
 	$.each(tabular.data, function(i,row) {
 		series.push([ row[idx1], row[idx2] ]);
