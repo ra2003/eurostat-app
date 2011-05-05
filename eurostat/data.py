@@ -5,8 +5,8 @@ import re
 import gzip
 import json
 
-from swiss import cache, tabular
-from swiss.misc import floatify
+from datautil import cache, tabular
+from datautil.misc import floatify
 base = 'http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?file=data/'
 
 cachepath = os.path.join(os.path.dirname(__file__), 'static', 'cache')
@@ -117,7 +117,7 @@ class Data(object):
             fp = self.download(eurostatid)
             self.extract(fp)
     
-from swiss.clitools import _main
+from datautil.clitools import _main
 if __name__ == '__main__':
     _main(Data)
 
